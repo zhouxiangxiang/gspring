@@ -30,6 +30,7 @@ public class App {
     public String home() throws Exception {
 
 //        https://www.cnblogs.com/wpbxin/p/13061470.html
+//        https://www.cnblogs.com/caicz/p/17301789.html
         PathMatchingResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
         Resource[] resources = resourcePatternResolver.getResources("classpath*:*");
         ResourcePatternResolver resolver = ResourcePatternUtils.getResourcePatternResolver(resourceLoader);
