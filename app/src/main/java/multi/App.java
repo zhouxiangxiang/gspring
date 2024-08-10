@@ -5,13 +5,24 @@ package multi;
 
 import com.gradle.CustomLib;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication(scanBasePackages = "com.example.multimodule")
+@RestController
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
+    @GetMapping("/")
+    public String home() {
+        return CustomLib.identifier;
+    }
+
     public static void main(String[] args) {
-        System.out.println(CustomLib.identifier);
-        System.out.println(new App().getGreeting());
+        SpringApplication.run(App.class, args);
     }
 }
