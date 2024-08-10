@@ -5,20 +5,31 @@ package multi;
 
 import com.gradle.CustomLib;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication(scanBasePackages = "com.example.multimodule")
 @RestController
 public class App {
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     public String getGreeting() {
         return "Hello World!";
     }
 
     @GetMapping("/")
-    public String home() {
+    public String home() throws Exception {
+
+        PathMatchingResourcePatternResolver resourcePatternResolver = new PathMatchingResourcePatternResolver();
+        Resource[] resources = resourcePatternResolver.getResources("classpath*:*");
+
         return CustomLib.identifier;
     }
 
